@@ -41,6 +41,8 @@ $(document).ready(function(){
       return "B";
       // もし「averageIndicate」が40以上なら"C"を返します。
       // もし「averageIndicate」がそれ以外の点数なら"D"を返します。
+    } else if ( averageIndicate >= 40) {
+      return "C";
     } else {
       return "D";
     }
@@ -75,7 +77,15 @@ $(document).ready(function(){
     // 変数「pass_or_failure」に「get_pass_or_failure()の戻り値」を代入します。
     let pass_or_failure = get_pass_or_failure();
     // 「最終ジャッジ」(id="alert-indicate)ボタンを押したら「あなたの成績は${achievement}で${pass_or_failure}です」が出力される処理です。
-     $('#declaration').append(`<label id="alert-indicate" class="alert alert-info">あなたの成績は${achievement}で${pass_or_failure}です</label>`);
+    //$('#declaration').append(`<label id="alert-indicate" class="alert alert-info">あなたの成績は${achievement}で${pass_or_failure}です</label>`);
+    //
+    let target = document.getElementById(`alert-indicate`);
+    if( target != null){
+      target.remove();
+      $('#declaration').append(`<label id="alert-indicate" class="alert alert-info">あなたの成績は${achievement}で${pass_or_failure}です</label>`);
+    } else {
+      $('#declaration').append(`<label id="alert-indicate" class="alert alert-info">あなたの成績は${achievement}で${pass_or_failure}です</label>`);
+    }
   };
   // [国語の点数,英語の点数,数学の点数,理科の点数,社会の点数]のいずれかの点数が変更された際に「function score_indicate()」を発火させる処理です。
   $('#national_language, #english, #mathematics, #science, #society').change(function() {
